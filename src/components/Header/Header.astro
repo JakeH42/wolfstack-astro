@@ -1,0 +1,44 @@
+---
+// Get Data
+import siteSettings from '../../data/site-settings.json';
+
+// Get Logo
+import logoImage from '../../media/logo/wolfstack-horizontal-logo-small.png'
+
+// Import Astro Imge Component
+import { Image } from 'astro:assets';
+
+
+// Get Necessary Values
+const { siteTitle, siteLogoURL } = siteSettings;
+
+// Get Components
+import SocialMediaList from '../Social/SocialMediaList.astro'
+---
+
+<!-- HEADER START -->
+<header>
+    <div class="container">
+        <div class="site-header">
+            <div class="logo">
+                <Image 
+                    class="logo__image" 
+                    src={logoImage} 
+                    alt={`${siteTitle} logo`}
+                    widths={[240, 380]}
+                    width='180'
+                />
+            </div>
+            <nav>
+                <ul class="primary-nav">
+                    <li class="primary-nav__item">
+                        <a class="primary-nav__link" href="" ></a>
+                    </li>
+                </ul>
+            
+            </nav>
+            
+        </div>
+    </div>
+</header>
+<!-- HEADER END -->

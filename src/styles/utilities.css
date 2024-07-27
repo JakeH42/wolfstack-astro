@@ -1,0 +1,53 @@
+/* General utilities */
+.list-none {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Spacing */
+.section-space {
+    padding: var(--section-space) 0;
+}
+
+.section-space--large {
+    padding: var(--section-space-large) 0;
+}
+
+.section-space--extra-large {
+    padding: var(--section-space-extra-large) 0;
+}
+
+.section-space--small {
+    padding: var(--section-space-small) 0;
+}
+
+.section-space--extra-small {
+    padding: var(--section-space-extra-small) 0;
+}
+
+/* Grid / Flex */
+.grid {
+    display: grid;
+    grid-template-columns: var(--_grid-col, 1fr);
+    gap: var(--_gap, var(--grid-gap)); 
+}
+
+@media screen and (max-width: 65rem) {
+    .grid {
+        grid-template-columns: var(--_grid-col--md);
+    }
+}
+
+@media screen and (max-width: 42rem) {
+    .grid {
+        grid-template-columns: var(--_grid-col--sm);
+    }
+}
+
+.flex {
+    display: flex;
+    gap: var(--_gap, 1rem);
+    flex-wrap: wrap;
+}
+

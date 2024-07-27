@@ -1,0 +1,15 @@
+---
+// Import Astro Imge Component
+import { Image } from 'astro:assets';
+
+const { project, index } = Astro.props;
+---
+
+<li class="project-card" data-key={index}>
+    <div class="project-card__media-wrapper">
+        
+        <Image class="project-card__media" src={project.cover} alt={project.coverAlt} />
+    </div>
+    <h3 class="project-card__heading">{project.title}</h3>
+    
+</li>

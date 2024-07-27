@@ -1,0 +1,63 @@
+/* ==========================================================================
+   CSS VARIABLES
+   ========================================================================== */
+
+:root {
+    /* COLORS */
+
+    /* Set the color lightness step */
+    --lightness-step: 11%;
+
+    /* Set the HSL values for the PRIMARY color */
+    --primary-h: 280;
+    --primary-s: 75%;
+    --primary-l: 50%;
+    
+    --primary: hsl( var(--primary-h), var(--primary-s), var(--primary-l) );
+    --primary-ultra-light: hsl( var(--primary-h), var(--primary-s), calc( var(--primary-l) + var(--lightness-step) * 4 ) );
+    --primary-light: hsl( var(--primary-h), var(--primary-s), calc( var(--primary-l) + var(--lightness-step) * 3 ) );
+    --primary-semi-light: hsl( var(--primary-h), var(--primary-s), calc( var(--primary-l) + var(--lightness-step) * 2 ) );
+    --primary-semi-dark: hsl( var(--primary-h), var(--primary-s), calc( var(--primary-l) - var(--lightness-step) * 2 ) );
+    --primary-dark: hsl( var(--primary-h), var(--primary-s), calc( var(--primary-l) - var(--lightness-step) * 3 ) );
+    --primary-ultra-dark: hsl( var(--primary-h), var(--primary-s), calc( var(--primary-l) - var(--lightness-step) * 4 ) );
+
+    /* Set the HSL values for the BASE color */
+    --base-h: 0;
+    --base-s: 0%;
+    --base-l: 40%;
+    
+    --base: hsl(var(--base-h), var(--base-s), var(--base-l));
+    --base-ultra-light: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + var(--lightness-step) * 4));
+    --base-light: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + var(--lightness-step) * 3));
+    --base-semi-light: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + var(--lightness-step) * 2));
+    --base-semi-dark: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - var(--lightness-step) * 2));
+    --base-dark: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - var(--lightness-step) * 3));
+    --base-ultra-dark: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - var(--lightness-step) * 4));
+
+    
+    /* SPACING / GAPS */
+
+    /* Container gutter */
+    --container-gutter: clamp(1rem, 1.5vw + 0.75rem, 2rem);
+
+    /* Grid gap */
+    --grid-gap: clamp(0.75rem, 1vw + 0.5rem, 2.5rem);
+
+    /* Content gap */
+    --content-gap: clamp(1rem, 1.5vw + 0.75rem, 2rem);
+
+    /* Containert gap */
+    --container-gap: clamp(1rem, calc(0.75rem + 4vw), 5.5rem);
+
+    /* Card gap */
+    --card-gap: clamp(0.75rem, 1.5vw + 0.75rem, 1.5rem);
+
+    /* Section spacing */
+    --section-space: clamp(1.5rem, calc(1rem + 5vw), 9.77rem);
+    --section-space-small: clamp(1rem, calc(0.75rem + 4vw), 5.5rem);
+    --section-space-extra-small: clamp(0.75rem, calc(0.5rem + 3vw), 3.5rem);
+    --section-space-large: clamp(2rem, calc(1.5rem + 6vw), 12.21rem);
+    --section-space-extra-large: clamp(2.5rem, calc(2rem + 8vw), 15.26rem);
+}
+
+
