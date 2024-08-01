@@ -1,0 +1,52 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import TagCloud from '../../../components/TagCloud.astro';
+import { getCollection } from 'astro:content';
+import { slugify } from '../../../js/utils';
+
+// Load tag metadata from the content file
+import tagsExcerpts from '../../../data/project-tags.json';
+
+// 1. Generate a new path for every unique tag
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+  const allTags = new Set();
+
+  // Collect all unique tags
+  projectEntries.forEach(entry => {
+    entry.data.tags.forEach(tag => allTags.add(tag.toLowerCase().replace(/\s+/g, '-')));
+  });
+
+  const paths = Array.from(allTags).map( tag => ({
+    params: { tag },
+    props: { 
+      tag,
+      excerpt: tagsExcerpts[tag]?.excerpt || 'Discover projects tagged with this topic.'
+    },
+  }));
+
+  return paths;
+}
+
+const { tag, excerpt } = Astro.props;
+const projectEntries = await getCollection('projects');
+const filteredProjects = projectEntries.filter(entry => 
+  entry.data.tags.some(t => slugify(t) === tag)
+);
+---
+
+<Layout title={`Projects tagged with ${tag}`} description={`Projects tagged with ${tag}`}>
+  <h1>#{tag}</h1>
+  <p>{excerpt}</p>
+  <ul>
+    {filteredProjects.map(project => (
+      <li>
+        <a href={`/projects/${project.slug}`}>
+          <h2>{project.data.title}</h2>
+        </a>
+        <p>{project.data.excerpt}</p>
+      </li>
+    ))}
+  </ul>
+  <TagCloud />
+</Layout>

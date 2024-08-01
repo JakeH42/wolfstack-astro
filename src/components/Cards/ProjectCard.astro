@@ -1,15 +1,35 @@
 ---
-// Import Astro Imge Component
+// Components
 import { Image } from 'astro:assets';
+import Tag from '../Tag.astro';
 
+// Props
 const { project, index } = Astro.props;
+
+// Get post tags
+const tags = project.data.tags;
+
 ---
 
 <li class="project-card" data-key={index}>
-    <div class="project-card__media-wrapper">
-        
-        <Image class="project-card__media" src={project.cover} alt={project.coverAlt} />
-    </div>
-    <h3 class="project-card__heading">{project.title}</h3>
-    
+  <div class="project-card__media-wrapper">
+    <Image 
+      src={project.data.featuredImage.src} 
+      alt={project.data.featuredImage.alt}
+    />
+  </div>
+  <h3 class="project-card__heading">{project.data.title}</h3>
+  <ul class="post-tags | list-none">
+    <strong>Tags:</strong>
+    {tags.map( (tag: string) => (
+      <Tag tag={tag}></Tag>
+    ))}
+  </ul>
+  <a href={'/projects/' + project.slug}>{project.slug}</a>
 </li>
+
+<style>
+  .project-card {
+    /* Add your styles here */
+  }
+</style>

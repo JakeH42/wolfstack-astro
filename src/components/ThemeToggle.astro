@@ -1,0 +1,138 @@
+---
+// Components
+import { Icon } from "astro-icon/components";
+
+// Props
+const { size="1" } = Astro.props;
+---
+
+<div class="switch-track" style=`--_size: ${size}`>  
+    <button class="switch-track__toggle" aria-label="toggle dark mode theme on and off" title="Dark / light mode">
+        <Icon class="switch-track__icon-left" name={'mdi:white-balance-sunny'}/>
+        <Icon class="switch-track__icon-right" name={'mdi:weather-night'}/>
+    </button>
+</label>
+
+<style>
+    /* Set the switch size */
+    .switch-track {
+        --_size: 1;
+        --_width: 2rem;
+        --_height: 0.9rem;
+        --_padding: 0.2rem; 
+
+        position: relative;
+        width: calc(var(--_size) * var(--_width));
+        height: calc(var(--_size) * var(--_height));
+        padding: calc(var(--_size) * var(--_padding));
+        z-index: 1;
+    }
+
+    .switch-track:hover {
+        
+    }
+
+    .switch-track__icon-left,
+    .switch-track__icon-right {
+        content: '';
+        position: absolute;
+        width: calc(var(--_size) * var(--_height));
+        height: calc(var(--_size) * var(--_height))
+        aspect-ratio: 1/1;
+        border-radius: 100vh;
+        z-index: 2;
+    }
+
+    .switch-track__icon-left {
+        inset: calc(var(--_size) * var(--_padding)) 0 calc(var(--_size) * var(--_padding)) calc(var(--_size) * var(--_padding));
+    }
+
+    .switch-track__icon-right {
+        top: calc(var(--_size) * var(--_padding));
+        right: calc(var(--_size) * var(--_padding))
+    }
+
+    .switch-track__toggle {
+        position: absolute;
+        inset: 0 0 0 0;
+        background-color: #fff;
+        border-radius: 100vh;
+        transition: all 0.2s ease-out;
+        opacity: 0.85;
+    }
+
+    .switch-track__toggle:hover {
+        opacity: 1;
+    }
+
+    .switch-track__toggle:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 2px;
+    }
+
+    .switch-track__toggle::before {
+        content: '';
+        position: absolute;
+        inset: calc(var(--_size) * var(--_padding)) 0 calc(var(--_size) * var(--_padding)) calc(var(--_size) * var(--_padding));
+        background-color: #666;
+        width: calc(var(--_size) * var(--_height));
+        aspect-ratio: 1/1;
+        border-radius: 100vh;
+        -webkit-transition: all .4s;
+        transition: all .4s;
+        z-index: 3;
+    }
+
+    /* Toggle track background colour in dark mode */
+    html.dark-mode .switch-track__toggle {
+        background-color: #666;
+    }
+
+    /* Toggle button colour in dark mode */
+    html.dark-mode .switch-track__toggle::before {
+        background-color: #000;
+    }
+
+    /* Toggle icon colour in dark mode */
+    html.dark-mode .switch-track__icon-left {
+        color: #fff;;
+    }
+
+    html.dark-mode .switch-track__toggle::before {
+        /* Translate the toggle the width of the switch minus the width of the toggle itself */
+        --_track: calc( calc(var(--_size) * var(--_width)) - calc(var(--_size) * var(--_height)) ) ;
+
+        transform: translateX(var(--_track));
+    }
+</style>
+
+<script is:inline>
+
+    document.addEventListener('astro:page-load', () => {
+        const themeToggle = document.querySelector('.switch-track__toggle');
+        const htmlElement = document.documentElement;
+        const storedTheme = localStorage.getItem('theme');
+
+        // If stored theme is dark, set class to dark OR if there is no stored theme, check user client preference
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+
+        if(storedTheme === 'dark' || (!storedTheme && prefersDarkScheme)) {
+            htmlElement.classList.toggle("dark-mode");
+        }
+
+        // Change mode using the toggle button
+        themeToggle?.addEventListener('click', (e) => {
+            htmlElement.classList.toggle("dark-mode");
+
+            // Save the theme preference to localStorage
+            if (htmlElement.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        })
+    });
+
+    
+</script>

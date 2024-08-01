@@ -1,0 +1,17 @@
+---
+// Utils
+import { slugify } from '../js/utils';
+
+// Define structure of props for this component
+interface Props {
+	tag: string;
+    count?: number;
+}
+
+// Props
+const { tag, count } = Astro.props;
+---
+
+<li class="post-tags__item">
+    <a class="post-tags__link" href={'/projects/tags/' + slugify(tag)}>{tag}</a>
+</li>

@@ -1,0 +1,24 @@
+{
+    "seo": {
+        "excerpt": "Projects that have included SEO, including on-page SEO, core web vital (speed, accesibility and user experience) optimisation and Google business profile optimisation."
+    },
+    "web-development": {
+        "excerpt": "WolfStack web solutions are responsible for the development of these websites, ensuring optimised code that complies with modern web standards."
+    },
+    "wordpress": {
+        "excerpt": "Projects built with WordPress CMS offer amazing content management, providing a seamless and user-friendly experience."
+    },
+    "bricks-builder": {
+        "excerpt": "Projects built with Bricks Builder (https://bricksbuilder.io) - a fully customisable, developer-friendly and very fast page builder."
+    },
+    "acss": {
+        "excerpt": "Prpojects built with Automatic CSS (ACSS) - a tokenised CSS framework that works perfectly with Bricks Builder that allows for BEM naming conventions to build highly scalbale and maintainable Wordpress sites."
+    },
+    "astro-build": {
+        "excerpt": "Projects built with Astro (https://astro.build) - a modern website framework that produces blazingly fast websites and used by the likes of Google, Microsoft, Nord VPN and more."
+    },
+    "payload-headless-cms": {
+        "excerpt": "Projects built with Payload (https://payloadcms.com), a headless CMS that offers flexible APIs, real-time visual editing, and robust content management."
+    }
+    
+}

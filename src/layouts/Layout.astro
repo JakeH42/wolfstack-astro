@@ -1,12 +1,22 @@
 ---
 // Get Components
-import Header from '../components/Header/Header.astro';
-import Footer from '../components/Footer/Footer.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Router
+import { ViewTransitions } from "astro:transitions";
 
 // Styles
 import "../styles/combined/main.css";
 
-const { title, description, featuredImage } = Astro.props;
+const { title = 'Default site title', description = 'default description', shareImage = ''} = Astro.props;
+
+// Define structure of props for this component
+interface Props {
+	title: string;
+	description: string;
+	shareImage?: string;
+}
 ---
 
 <!doctype html>
@@ -24,15 +34,25 @@ const { title, description, featuredImage } = Astro.props;
 		<!-- Open Graph Tags (For Social Media Snippets) -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={featuredImage} />
+		<meta property="og:image" content={shareImage} />
 		<meta property="og:type" content="website" />
 
+		<ViewTransitions />
 	</head>
 	<body>
+		<a class="skip-to-main | sr-only sr-only-focusable" href="#main">Skip to main content</a>
 		<Header />
-			<main>
+			<main id="main">
 				<slot />
 			</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.skip-to-main {
+		z-index: 2;
+		background: #000;
+		color: #fff;
+	}
+</style>

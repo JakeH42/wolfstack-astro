@@ -1,6 +1,19 @@
 ---
+// Components
 import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/Cards/ProjectCard.astro';
+
+// Data
+import { getCollection } from 'astro:content';
+const allProjectPosts = await getCollection('projects');
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="WolfStack Web" description="Wolfstack Homepage">
+	<section class="project-grid-section">
+		<ul class="grid list-none" style="--_grid-col: repeat(3, 1fr);">
+			{allProjectPosts.map( project => (
+				<ProjectCard  project={project}/>
+			) )}
+		</ul>
+	</section>
 </Layout>

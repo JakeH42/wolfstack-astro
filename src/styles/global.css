@@ -1,9 +1,0 @@
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    background: var(--base-ultra-light);
-}
-
-.container {
-    max-width: var(--base-breakpoint);
-    margin: 0 auto;
-}

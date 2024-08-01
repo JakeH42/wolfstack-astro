@@ -1,0 +1,68 @@
+---
+//  Components
+import { Icon } from 'astro-icon/components';
+
+// Data
+import siteSettings from '../data/site-settings.json';
+
+// Props
+const {showEmail, showPhone, showAddress } = Astro.props;
+---
+
+<div class="contact-details-footer">
+    <ul class="contact-details-list | list-none">
+        {showEmail && (
+            <li class="contact-details-list__item">
+                <a 
+                    class="contact-details-list__link | flex align-center" 
+                    style="--_gap: 0.5rem" 
+                    href={`mailto: ${siteSettings.contactEmail}`}
+                    aria-label={`Send an email to ${siteSettings.contactEmail}`}
+                >
+                    <div class="contact-details-list__icon">
+                        <Icon name="mdi:email"/>   
+                    </div>
+                    <div class="contact-details-list__label">
+                        {siteSettings.contactEmail}
+                    </div>
+                </a>
+            </li>
+        )}
+        
+        {showPhone && (
+            <li class="contact-details-list__item">
+                <a 
+                    class="contact-details-list__link | flex align-center" 
+                    style="--_gap: 0.5rem" 
+                    href={`tel:${siteSettings.phoneNumberLink}`}
+                    aria-label={`Call us on ${siteSettings.phoneNumber}`}
+                >
+                    <div class="contact-details-list__icon">
+                        <Icon name="mdi:phone"/>   
+                    </div>
+                    <div class="contact-details-list__label">
+                        {siteSettings.phoneNumber}
+                    </div>
+                </a>
+            </li>
+        )}
+        
+        {showAddress && (
+            <li class="contact-details-list__item">
+                <a 
+                    class="contact-details-list__link | flex align-center" 
+                    style="--_gap: 0.5rem" 
+                    href={siteSettings.addressLink}
+                    aria-label={`View ${siteSettings.address} on Google Maps`}
+                >
+                <div class="contact-details-list__icon">
+                        <Icon name="mdi:location"/>
+                    </div>
+                    <div class="contact-details-list__label">
+                        {siteSettings.address}
+                    </div>
+                </a>
+            </li>
+        )}
+    </ul>
+</div>

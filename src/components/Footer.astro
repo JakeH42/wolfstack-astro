@@ -1,0 +1,35 @@
+---
+// Components
+import SocialMediaList from "./SocialMediaList.astro";
+import ContactInfoList from "./ContactInfoList.astro";
+
+// Data
+import siteSettings from '../data/site-settings.json';
+
+let abnNumber = siteSettings.abn;
+---
+
+<footer class="site-footer">
+    <SocialMediaList />
+    <ContactInfoList 
+        showEmail={true} 
+        showPhone={true} 
+        showAddress={true}
+    />
+    <div class="copyright">
+        © <span id="current-year"></span> {siteSettings.businessName} 
+        {abnNumber && (
+            <> | <strong>ABN:</strong> {abnNumber} </>
+        )}
+    </div>
+</footer>
+
+
+<script>
+    const currentYear = new Date().getFullYear().toString();
+    const yearElement = document.querySelector('#current-year');
+    
+    if (yearElement) { // Ensure the element is not null
+        yearElement.innerHTML = currentYear;
+    }
+</script>

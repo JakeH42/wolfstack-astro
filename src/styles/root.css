@@ -1,8 +1,24 @@
 /* ==========================================================================
+   FONTS
+   ========================================================================== */
+@font-face {
+    font-family: InterVariable;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+
+/* ==========================================================================
    CSS VARIABLES
    ========================================================================== */
 
 :root {
+    /* FONTS */
+    --font-family: "InterVariable", sans-serif; font-optical-sizing: auto; 
+
+
     /* COLORS */
 
     /* Set the color lightness step */
@@ -61,3 +77,24 @@
 }
 
 
+body {
+    font-family: var(--font-family);
+    font-weight: 300;
+    background: var(--base-ultra-light);
+    color: var(--base-dark);
+}
+
+.dark-mode body {
+    background: var(--base-dark);
+    color: var(--base-ultra-light);
+}
+
+.dark-mode svg {
+    color: var(--base-ultra-light);
+    fill: var(--base-ultra-light);
+}
+
+.container {
+    max-width: var(--base-breakpoint);
+    margin: 0 auto;
+}

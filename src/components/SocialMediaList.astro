@@ -1,0 +1,30 @@
+---
+// Get Data
+// Find icons here => https://icones.js.org/collection/mdi
+import { Icon } from 'astro-icon/components';
+import siteSettings from '../data/site-settings.json';
+
+// Get Necessary Values
+const { socialMedia } = siteSettings;
+---
+
+<div class="social-media">
+    <ul class="social-media__list | flex list-none">
+        {socialMedia.map(social => (
+            <li class="social-media__item">
+            <a 
+                class="social-media__link | flex align-center"
+                style="--_gap: 0.5rem;"
+                href={social.pageUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+            >
+                <Icon name={`mdi:${social.iconName}`} size={22} />
+                <span class="social-media__name | sr-only">{social.name}</span>
+            </a>
+            </li>
+        ))}
+    </ul>
+</div>
+
+
